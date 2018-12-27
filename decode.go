@@ -52,12 +52,12 @@ func (d *Decoder) loadVMXMap() error {
 		}
 
 		parts := strings.Split(line, "=")
-		if len(parts) != 2 {
-			errors = appendErrors(errors, fmt.Errorf("Invalid line: %s ", line))
-		}
+		// if len(parts) != 2 {
+		// 	errors = appendErrors(errors, fmt.Errorf("Invalid line: %s ", line))
+		// }
 
 		key := strings.TrimSpace(parts[0])
-		value := strings.TrimSpace(parts[1])
+		value := strings.TrimSpace(strings.Join(parts[1:], ""))
 
 		unquotedVal, err := strconv.Unquote(value)
 		if err != nil {
